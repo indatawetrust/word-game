@@ -3,10 +3,11 @@ import { View, Text, StyleSheet, Dimensions, TouchableHighlight, } from "react-n
 import Button from "react-native-button";
 import { Actions } from "react-native-router-flux";
 import { Col, Row, Grid } from "react-native-easy-grid";
-import Words from '../words.json'
 import DB from '../db'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get("window")
+let Words = null
 
 const styles = StyleSheet.create({
   container: {
@@ -92,8 +93,23 @@ class Game extends React.Component {
     this.removeChar = this.removeChar.bind(this)
     this.trashChar = this.trashChar.bind(this)
     this.sendWord = this.sendWord.bind(this)
+    this.exit = this.exit.bind(this)
 
-    this.chars = ["a","b","c","ç","d","e","f","g","h","ı","i","j","k","l","m","n","o","ö","p","r","s","ş","t","u","ü","v","y","z"]
+    switch (this.props.lang) {
+      case 'tr':
+          Words = require('../words.tr.json')
+          this.chars = ["a","b","c","ç","d","e","f","g","h","ı","i","j","k","l","m","n","o","ö","p","r","s","ş","t","u","ü","v","y","z"]
+        break
+      case 'en':
+          Words = require('../words.en.json')
+          this.chars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","x","y","z"]
+        break
+      case 'fr':
+          Words = require('../words.fr.json')
+          this.chars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","x","y","z"]
+        break
+    }
+
     this.words = []
 
     let words = []
@@ -115,6 +131,7 @@ class Game extends React.Component {
     this.state = {
       word: '',
       words: words,
+      lang: this.props.lang,
       newWord: this.shuffle(newWord),
       time: '03:00',
       score: 0,
@@ -128,14 +145,7 @@ class Game extends React.Component {
 
       if (this.time === 0) {
 
-        DB.save({
-          key: 'score',
-          rawData: {
-            score: this.state.score,
-          }
-        })
-
-        Actions.intro()
+        this.scoreSave(this.state.score)
 
       }
 
@@ -149,16 +159,6 @@ class Game extends React.Component {
     }, 1000)
 
     this.generate()
-  }
-
-  componentWillMount () {
-
-    try {
-
-    } catch (e) {
-
-    }
-
   }
 
   row () {
@@ -333,23 +333,54 @@ class Game extends React.Component {
     }
   }
 
+  exit () {
+    this.scoreSave(this.state.score)
+  }
+
+  scoreSave (score) {
+    DB.load({
+      key: 'score',
+    }).then(res => {
+
+      if (res.score < score) {
+
+        DB.save({
+          key: 'score',
+          rawData: {
+            score: this.state.score,
+          }
+        })
+
+      }
+
+      Actions.intro()
+
+    })
+  }
+
   render(){
     return (
       <View {...this.props}  style={styles.container}>
         <Grid>
-          <Row size={2} style={styles.top}>
-
+          <Row size={1.5} style={styles.top}>
           </Row>
-          <Row size={1} style={styles.top}>
+          <Row size={1.5} style={styles.top}>
             <View style={[styles.topTextView, { marginRight: width*0.1, }]}>
               <Text style={styles.topText}>
-                {this.state.time}
+                <Icon name="clock-o" style={{ color: '#2980b9',fontSize: width*0.05, }}/> {this.state.time}
               </Text>
             </View>
-            <View style={[styles.topTextView]}>
+            <View style={[styles.topTextView, { marginRight: width*0.05, }]}>
               <Text style={styles.topText}>
-                {this.state.score}
+                <Icon name="star" style={{ color: '#2980b9',fontSize: width*0.05, }}/> {this.state.score}
               </Text>
+            </View>
+            <View style={{ position: 'absolute', right: width*0.1, padding: width*0.02, borderRadius: 5, backgroundColor: '#fff' }}>
+              <TouchableHighlight onPress={this.exit} underlayColor={'rgba(0,0,0,0)'}>
+                <Text style={styles.topText}>
+                  <Icon name="sign-out" style={{ color: '#2980b9',fontSize: width*0.04, }}/>
+                </Text>
+              </TouchableHighlight>
             </View>
           </Row>
           <Row size={0.5} style={styles.top}>
@@ -373,7 +404,9 @@ class Game extends React.Component {
               }}>
                 <TouchableHighlight onPress={this.removeChar} underlayColor={'rgba(0,0,0,0)'} style={{ opacity: this.state.word === '' ? 0.2 : 1 }}>
                   <View style={[styles.button, { opacity: this.state.word === '' ? 0.8 : 1 }]}>
-                    <Text style={styles.send}>sil</Text>
+                    <Text style={styles.send}>
+                      {this.state.lang == 'en' ? 'delete' : (this.state.lang == 'fr' ? 'effacer' : 'sil')}
+                    </Text>
                   </View>
                 </TouchableHighlight>
               </Col>
@@ -384,7 +417,9 @@ class Game extends React.Component {
               }}>
                 <TouchableHighlight onPress={this.trashChar} underlayColor={'rgba(0,0,0,0)'} style={{ opacity: this.state.word === '' ? 0.2 : 1 }}>
                   <View style={[styles.button, { opacity: this.state.word === '' ? 0.8 : 1 }]}>
-                    <Text style={styles.send}>temizle</Text>
+                    <Text style={styles.send}>
+                      {this.state.lang == 'en' ? 'clean' : (this.state.lang == 'fr' ? 'propre' : 'temizle')}
+                    </Text>
                   </View>
                 </TouchableHighlight>
               </Col>
@@ -395,7 +430,9 @@ class Game extends React.Component {
               }}>
                 <TouchableHighlight onPress={this.sendWord} underlayColor={'rgba(0,0,0,0)'} style={{ opacity: this.state.word === '' ? 0.2 : 1 }}>
                   <View style={[styles.button, { opacity: this.state.word === '' ? 0.8 : 1 }]}>
-                    <Text style={styles.send}>gönder</Text>
+                    <Text style={styles.send}>
+                      {this.state.lang == 'en' ? 'send' : (this.state.lang == 'fr' ? 'envoyer' : 'gönder')}
+                    </Text>
                   </View>
                 </TouchableHighlight>
               </Col>

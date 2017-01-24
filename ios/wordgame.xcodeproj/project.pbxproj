@@ -35,6 +35,11 @@
 		7D52FC5C588F473B83F03004 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71B1293DD108456ABD869328 /* Octicons.ttf */; };
 		E9DB9C22BDE345CB8DC20551 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1B7F07EF924990B2780215 /* SimpleLineIcons.ttf */; };
 		A123DC358E84433C90DA7879 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A020A3571E1460196E864E0 /* Zocial.ttf */; };
+		0F5DD846163B4E568A5F3342 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A929F56837CC4207A7DF46A7 /* libReact.a */; };
+		E8D19541C1AC4FC8934AFD35 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9F07C2743E4B78A65CB7F9 /* libyoga.a */; };
+		1C40FB1C4D824A769EC50F0C /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2768EC07EE44719AA641E1A /* libcxxreact.a */; };
+		F506110FC7A24C68818B3CAC /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C167A8137004D8B8952F4ED /* libjschelpers.a */; };
+		24F746AD3A4647C2A7BB4DA6 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 406457908EA84B4BA3AE4137 /* libRNAdMobManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +264,13 @@
 		71B1293DD108456ABD869328 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		6A1B7F07EF924990B2780215 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7A020A3571E1460196E864E0 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6335605AB44D4FBDAF804ACD /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A929F56837CC4207A7DF46A7 /* libReact.a */ = {isa = PBXFileReference; name = "libReact.a"; path = "libReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6E9F07C2743E4B78A65CB7F9 /* libyoga.a */ = {isa = PBXFileReference; name = "libyoga.a"; path = "libyoga.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		E2768EC07EE44719AA641E1A /* libcxxreact.a */ = {isa = PBXFileReference; name = "libcxxreact.a"; path = "libcxxreact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		7C167A8137004D8B8952F4ED /* libjschelpers.a */ = {isa = PBXFileReference; name = "libjschelpers.a"; path = "libjschelpers.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1963B830520A4CF889ED1394 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; name = "RNAdMobManager.xcodeproj"; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		406457908EA84B4BA3AE4137 /* libRNAdMobManager.a */ = {isa = PBXFileReference; name = "libRNAdMobManager.a"; path = "libRNAdMobManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +299,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				01793E38BA034C21B5566046 /* libReactNativeIcons.a in Frameworks */,
 				C6680B9B41344EAF8BE85D90 /* libRNVectorIcons.a in Frameworks */,
+				0F5DD846163B4E568A5F3342 /* libReact.a in Frameworks */,
+				E8D19541C1AC4FC8934AFD35 /* libyoga.a in Frameworks */,
+				1C40FB1C4D824A769EC50F0C /* libcxxreact.a in Frameworks */,
+				F506110FC7A24C68818B3CAC /* libjschelpers.a in Frameworks */,
+				24F746AD3A4647C2A7BB4DA6 /* libRNAdMobManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +450,8 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				69AD94F2139045D8A7984CEE /* ReactNativeIcons.xcodeproj */,
 				D3F3B3E3B8114AE087E6FB2B /* RNVectorIcons.xcodeproj */,
+				6335605AB44D4FBDAF804ACD /* RNI18n.xcodeproj */,
+				1963B830520A4CF889ED1394 /* RNAdMobManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -887,6 +906,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -903,6 +927,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordgame.app/wordgame";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

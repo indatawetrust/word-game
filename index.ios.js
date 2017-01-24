@@ -21,6 +21,7 @@ import {
   Actions,
   ActionConst,
 } from 'react-native-router-flux';
+import { AdMobBanner, AdMobInterstitial, PublisherBanner} from 'react-native-admob'
 
 import Intro from './components/Intro'
 import Game from './components/Game'
@@ -36,12 +37,18 @@ const reducerCreate = params => {
 export default class wordgame extends Component {
   render() {
     return (
+      <View style={{ flex: 1, }}>
       <Router createReducer={reducerCreate}>
         <Scene key="root">
           <Scene component={Intro} initial key="intro" hideNavBar duration={0}/>
           <Scene component={Game} key="game" hideNavBar duration={0}/>
         </Scene>
       </Router>
+      <AdMobBanner
+        bannerSize="smartBannerPortrait"
+        adUnitID="ca-app-pub-*/*"
+        testDeviceID="EMULATOR"/>
+      </View>
     );
   }
 }

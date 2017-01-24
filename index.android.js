@@ -12,20 +12,42 @@ import {
   View
 } from 'react-native';
 
+import {
+  Scene,
+  Reducer,
+  Router,
+  Switch,
+  Modal,
+  Actions,
+  ActionConst,
+} from 'react-native-router-flux';
+import { AdMobBanner, AdMobInterstitial, PublisherBanner} from 'react-native-admob'
+
+import Intro from './components/Intro'
+import Game from './components/Game'
+
+const reducerCreate = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    console.log('ACTION:', action);
+    return defaultReducer(state, action);
+  };
+};
+
 export default class wordgame extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View style={{ flex: 1, }}>
+      <Router createReducer={reducerCreate}>
+        <Scene key="root">
+          <Scene component={Intro} initial key="intro" hideNavBar duration={0}/>
+          <Scene component={Game} key="game" hideNavBar duration={0}/>
+        </Scene>
+      </Router>
+      <AdMobBanner
+        bannerSize="smartBannerPortrait"
+        adUnitID="ca-app-pub-*/*"
+        testDeviceID="EMULATOR"/>
       </View>
     );
   }
